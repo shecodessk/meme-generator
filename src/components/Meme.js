@@ -1,11 +1,14 @@
+import React, { useState } from 'react'
 import DataMemes from '../Data'
 
 export const Meme = () =>{
+  const [memeImage, setMemeImage] = React.useState("")
   function GetMemeImg (){
     const memeArray = DataMemes.data.memes
     const randomNumber = Math.floor(Math.random()* memeArray.length)
     const generateMeme = memeArray[randomNumber].url
-    console.log(generateMeme)    
+    
+    setMemeImage(generateMeme)
   }
   return(
     <main>
@@ -14,7 +17,7 @@ export const Meme = () =>{
         <input className="meme--input-right" type="text" placeholder="take my money"/>
         <button onClick={GetMemeImg} className="meme--button"> Get a new meme image 🖼️</button>
       </div>
-
+      <img src={memeImage} className="meme--image"/>
     </main>
   )
 }
